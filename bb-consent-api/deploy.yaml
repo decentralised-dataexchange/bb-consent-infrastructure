@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: consentbb-api
+  name: consentbb-api
+  namespace: consentbb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consentbb-api
+  template:
+    metadata:
+      labels:
+        app: consentbb-api
+    spec:
+      containers:
+        - image: eu.gcr.io/jenkins-189019/bb-consent-api:main-20230823190117-5fb4404
+          imagePullPolicy: IfNotPresent
+          name: consentbb-api
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /opt/bb-consent/api/config
+              name: config-volume
+          resources: {}
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: consentbb-api-config
+          name: config-volume

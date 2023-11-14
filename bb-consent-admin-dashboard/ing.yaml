@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+  name: consentbb-admin-dashboard-ing
+  namespace: consentbb
+spec:
+  rules:
+    - host: consentbb-admin-dashboard.igrant.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: consentbb-admin-dashboard-svc
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+          - backend:
+              service:
+                name: consentbb-admin-dashboard-svc
+                port:
+                  number: 80
+            path: /*
+            pathType: Prefix
+  tls:
+    - hosts:
+        - consentbb-admin-dashboard.igrant.io
+      secretName: tls-secret-govstack

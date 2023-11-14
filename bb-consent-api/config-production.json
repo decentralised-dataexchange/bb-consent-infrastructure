@@ -1,0 +1,60 @@
+{
+  "DataBase": {
+    "hosts": [""],
+    "name": "",
+    "username": "",
+    "password": ""
+  },
+  "ApplicationMode": "",
+  "Organization": {
+    "name": "",
+    "location": "",
+    "description": "",
+    "eulaUrl": ""
+  },
+  "User": {
+    "username": "",
+    "password": ""
+  },
+  "ApiSecretKey": "",
+  "Type": {
+    "name": ""
+  },
+  "Iam": {
+    "url": "",
+    "realm": "",
+    "ClientId": "",
+    "Jwks": {
+      "RsaRawN": "",
+      "RsaRawE": ""
+    },
+    "AdminUser": "",
+    "AdminPassword": "",
+    "timeout": 5
+  },
+  "Smtp": {
+    "username": "",
+    "password": "",
+    "host": "",
+    "port": 587,
+    "adminEmail": ""
+  },
+  "Twilio": {
+    "accountSid": "",
+    "authToken": ""
+  },
+  "Webhooks": {
+    "events": ["consent.allowed", "consent.disallowed"]
+  },
+  "PrivacyDashboardDeployment": {
+    "Hostname": "data4diabetes-privacy.igrant.io",
+    "Version": "v1.0.0"
+  },
+  "Policy": {
+    "Name": "Policy 1",
+    "Url": "https://www.govstack.global/privacy/",
+    "IndustrySector": "Healthcare",
+    "GeographicRestriction": "Sweden",
+    "StorageLocation": "Sweden"
+  }
+}

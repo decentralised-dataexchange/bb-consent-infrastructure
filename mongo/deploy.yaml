@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: consentbb-mongo
+  name: consentbb-mongo
+  namespace: consentbb
+spec:
+  selector:
+    matchLabels:
+      run: consentbb-mongo
+  template:
+    metadata:
+      labels:
+        run: consentbb-mongo
+    spec:
+      containers:
+        - env:
+            - name: MONGODB_APPLICATION_DATABASE
+              value: <>
+            - name: MONGODB_APPLICATION_USER
+              value: <>
+            - name: MONGODB_APPLICATION_PASSWORD
+              value: <>
+          image: eu.gcr.io/jenkins-189019/igrant-mongo:4.0.4
+          imagePullPolicy: IfNotPresent
+          name: consentbb-mongo
+          resources: {}
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongodb-data
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: consentbb-mongo-pvc

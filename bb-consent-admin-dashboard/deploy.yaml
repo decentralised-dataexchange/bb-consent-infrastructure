@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: consentbb-admin-dashboard
+  name: consentbb-admin-dashboard
+  namespace: consentbb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consentbb-admin-dashboard
+  template:
+    metadata:
+      labels:
+        app: consentbb-admin-dashboard
+    spec:
+      containers:
+        - image: eu.gcr.io/jenkins-189019/bb-consent-dashboard:main-20231020005142-f932e7c
+          imagePullPolicy: IfNotPresent
+          name: consentbb-admin-dashboard
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 5000
+              protocol: TCP
+          resources: {}
+          env:
+            - name: REACT_APP_ENV
+              value: demo
