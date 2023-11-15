@@ -1,1 +1,0 @@
-kubectl create configmap consentbb-api-config --from-file=config-production.json -n consentbb
