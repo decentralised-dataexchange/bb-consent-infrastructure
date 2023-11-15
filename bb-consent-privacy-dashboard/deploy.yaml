@@ -25,3 +25,51 @@ spec:
             - containerPort: 5000
               protocol: TCP
           resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: consentbb-privacy-dashboard
+  name: consentbb-privacy-dashboard-svc
+  namespace: consentbb
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: consentbb-privacy-dashboard
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+  name: consentbb-privacy-dashboard-ing
+  namespace: consentbb
+spec:
+  rules:
+    - host: consentbb-privacy-dashboard.igrant.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: consentbb-privacy-dashboard-svc
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+          - backend:
+              service:
+                name: consentbb-privacy-dashboard-svc
+                port:
+                  number: 80
+            path: /*
+            pathType: Prefix
+  tls:
+    - hosts:
+        - consentbb-privacy-dashboard.igrant.io
+      secretName: tls-secret-govstack
