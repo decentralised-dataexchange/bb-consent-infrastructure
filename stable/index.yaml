@@ -2,13 +2,23 @@ apiVersion: v1
 entries:
   consentbb:
   - apiVersion: v2
-    created: "2023-11-23T01:04:15.132638381+05:30"
+    created: "2023-11-23T02:28:09.588102397+05:30"
     description: GovStack Consent Building Block by iGrant.io
-    digest: 55bdaf49e5e92a14aad96c838fab365aaaa1326a22b453297beaebc1c50ea338
+    digest: 7fc698f03ca988ee03683735cd8f8b29e45791d0fc6d3fed0b6078029c061a5d
+    icon: https://igrant.io/assets/images/favicons/android-icon-192x192.png
+    name: consentbb
+    type: application
+    urls:
+    - consentbb-2023.11.2.tgz
+    version: 2023.11.2
+  - apiVersion: v2
+    created: "2023-11-23T02:28:09.585543145+05:30"
+    description: GovStack Consent Building Block by iGrant.io
+    digest: 266e1106bce833954ad2368870ea969c07909100da720af0c9c5ffda7c2451f6
     icon: https://igrant.io/assets/images/favicons/android-icon-192x192.png
     name: consentbb
     type: application
     urls:
     - consentbb-2023.11.1.tgz
     version: 2023.11.1
-generated: "2023-11-23T01:04:15.131598952+05:30"
+generated: "2023-11-23T02:28:09.584293128+05:30"
