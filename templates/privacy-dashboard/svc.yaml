@@ -1,3 +1,4 @@
+{{- if .Values.privacyDashboard.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,3 +13,4 @@ spec:
       targetPort: 80
   selector:
     app: {{ .Values.namespace }}-privacy-dashboard
+{{- end }}

@@ -1,3 +1,4 @@
+{{- if .Values.api.enabled }}
 apiVersion: v1
 data:
   config-production.json: |
@@ -59,3 +60,4 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.namespace }}-api-config
   namespace: {{ .Values.namespace }}
+{{- end }}

@@ -8,6 +8,8 @@ securityContext:
 
 # Postgres
 postgres:
+  enabled: true
+  # Container image
   image: bitnami/postgresql:14.10.0
   # Username
   username: bn_keycloak
@@ -18,6 +20,8 @@ postgres:
 
 # Keycloak
 keycloak:
+  enabled: true
+  # Container image
   image: docker.io/bitnami/keycloak:22.0.2-debian-11-r0
   # Username
   adminUsername: admin
@@ -52,6 +56,8 @@ keycloak:
 
 # Mongodb
 mongo:
+  enabled: true
+  # Container image
   image: bitnami/mongodb:7.0
   username: bb-consent-user
   password: bb-consent-password
@@ -59,6 +65,7 @@ mongo:
 
 # API
 api:
+  enabled: true
   # Container image
   image: igrantio/bb-consent-api:2023.11.12
   # Ingress
@@ -157,6 +164,7 @@ api:
 
 # Admin dashboard
 adminDashboard:
+  enabled: true
   # Container image
   image: igrantio/bb-consent-admin-dashboard:2023.11.5
   # Ingress
@@ -196,6 +204,7 @@ adminDashboard:
 
 # Privacy dashboard
 privacyDashboard:
+  enabled: true
   # Container image
   image: igrantio/bb-consent-privacy-dashboard:2023.11.5
   # Ingress

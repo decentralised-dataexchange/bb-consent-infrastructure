@@ -1,3 +1,4 @@
+{{- if .Values.mongo.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -43,3 +44,4 @@ spec:
         - name: mongodb-data
           persistentVolumeClaim:
             claimName: {{ .Values.namespace }}-mongo-pvc
+{{- end }}

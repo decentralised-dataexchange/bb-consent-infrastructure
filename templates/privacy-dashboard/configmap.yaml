@@ -1,3 +1,4 @@
+{{- if .Values.privacyDashboard.enabled }}
 apiVersion: v1
 data:
   config.json: |
@@ -10,3 +11,4 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.namespace }}-privacy-dashboard-config
   namespace: {{ .Values.namespace }}
+{{- end }}
