@@ -1,0 +1,36 @@
+{{- $namespace := .Values.namespace -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $namespace }}-keycloak-ingress
+  namespace: {{ $namespace }}
+  {{- with .Values.keycloak.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    {{- range .Values.keycloak.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
+            backend:
+              service:
+                name: {{ $namespace }}-keycloak-service
+                port:
+                  number: 8080
+          {{- end }}
+    {{- end }}
+  {{- if .Values.keycloak.ingress.tls }}
+  tls:
+    {{- range .Values.keycloak.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}

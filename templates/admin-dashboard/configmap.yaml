@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  config.json: |
+    {
+      "baseUrl": "{{ .Values.adminDashboard.configuration.baseUrl }}",
+      "appVersion": "{{ .Values.adminDashboard.configuration.appVersion }}",
+      "clientId": "{{ .Values.adminDashboard.configuration.clientId }}"
+    }
+kind: ConfigMap
+metadata:
+  name: {{ .Values.namespace }}-admin-dashboard-config
+  namespace: {{ .Values.namespace }}

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.namespace }}-privacy-dashboard
+  name: {{ .Values.namespace }}-privacy-dashboard
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.namespace }}-privacy-dashboard
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.namespace }}-privacy-dashboard
+    spec:
+      containers:
+        - image: {{ .Values.privacyDashboard.image }}
+          imagePullPolicy: Always
+          name: {{ .Values.namespace }}-privacy-dashboard
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html/config
+              name: config-volume
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: {{ .Values.namespace }}-privacy-dashboard-config
+          name: config-volume

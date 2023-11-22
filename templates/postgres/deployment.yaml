@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.namespace }}-postgres
+  name: {{ .Values.namespace }}-postgres-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.namespace }}-postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.namespace }}-postgres
+    spec:
+      containers:
+        - name: {{ .Values.namespace }}-postgres
+          image: {{ .Values.postgres.image }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRESQL_USERNAME
+              value: {{ .Values.postgres.username }}
+            - name: POSTGRESQL_PASSWORD
+              value: {{ .Values.postgres.password }}
+            - name: POSTGRESQL_DATABASE
+              value: {{ .Values.postgres.database }}
+          volumeMounts:
+            - mountPath: /bitnami/postgresql
+              name: postgredb
+              subPath: postgres
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: {{ .Values.namespace }}-postgres-pvc

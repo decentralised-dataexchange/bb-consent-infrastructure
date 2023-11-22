@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.namespace }}-api
+  name: {{ .Values.namespace }}-api
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.namespace }}-api
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.namespace }}-api
+    spec:
+      containers:
+        - image: {{ .Values.api.image }}
+          imagePullPolicy: Always
+          name: {{ .Values.namespace }}-api
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /opt/bb-consent/api/config
+              name: config-volume
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: {{ .Values.namespace }}-api-config
+          name: config-volume

@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  config.json: |
+    {
+      "baseUrl": "{{ .Values.privacyDashboard.configuration.baseUrl }}",
+      "redirectUrl": "{{ .Values.privacyDashboard.configuration.redirectUrl }}",
+      "clientId": "{{ .Values.privacyDashboard.configuration.clientId }}"
+    }
+kind: ConfigMap
+metadata:
+  name: {{ .Values.namespace }}-privacy-dashboard-config
+  namespace: {{ .Values.namespace }}

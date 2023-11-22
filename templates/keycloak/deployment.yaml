@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.namespace }}-keycloak
+  name: {{ .Values.namespace }}-keycloak-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.namespace }}-keycloak
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.namespace }}-keycloak
+    spec:
+      containers:
+        - name: {{ .Values.namespace }}-keycloak
+          image: {{ .Values.keycloak.image }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - containerPort: 8080
+          env:
+            - name: KEYCLOAK_ADMIN_USER
+              value: {{ .Values.keycloak.adminUsername }}
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: {{ .Values.keycloak.adminPassword }}
+            - name: KEYCLOAK_DATABASE_HOST
+              value: {{ .Values.namespace }}-postgres-service
+            - name: KEYCLOAK_DATABASE_PASSWORD
+              value: {{ .Values.keycloak.dbPassword }}
+            - name: KEYCLOAK_HTTP_RELATIVE_PATH
+              value: /
+            - name: KEYCLOAK_ENABLE_HTTPS
+              value: "false"
+            - name: KEYCLOAK_ENABLE_STATISTICS
+              value: "false"
+            - name: KEYCLOAK_HTTP_PORT
+              value: "8080"
+            - name: KEYCLOAK_LOG_OUTPUT
+              value: default
+            - name: KEYCLOAK_PRODUCTION
+              value: "false"
+            - name: KEYCLOAK_PROXY
+              value: edge

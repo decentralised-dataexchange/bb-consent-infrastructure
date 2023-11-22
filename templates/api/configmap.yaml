@@ -1,0 +1,61 @@
+apiVersion: v1
+data:
+  config-production.json: |
+    {
+      "DataBase": {
+        "hosts": [
+          "{{ .Values.namespace }}-mongo-svc"
+        ],
+        "name": "{{ .Values.mongo.database }}",
+        "username": "{{ .Values.mongo.username }}",
+        "password": "{{ .Values.mongo.password }}"
+      },
+      "ApplicationMode": "single-tenant",
+      "Organization": {
+        "name": "{{ .Values.api.configuration.Organization.name }}",
+        "location": "{{ .Values.api.configuration.Organization.location }}",
+        "description": "{{ .Values.api.configuration.Organization.description }}",
+        "eulaUrl": "{{ .Values.api.configuration.Organization.eulaUrl }}"
+      },
+      "User": {
+        "username": "{{ .Values.api.configuration.User.username }}",
+        "password": "{{ .Values.api.configuration.User.password }}"
+      },
+      "ApiSecretKey": "{{ .Values.api.configuration.ApiSecretKey }}",
+      "Type": {
+        "name": "{{ .Values.api.configuration.Type.name }}"
+      },
+      "Iam": {
+        "url": "{{ .Values.api.configuration.Iam.url }}",
+        "realm": "{{ .Values.api.configuration.Iam.realm }}",
+        "ClientId": "{{ .Values.api.configuration.Iam.ClientId }}",
+        "AdminUser": "{{ .Values.keycloak.adminUsername }}",
+        "AdminPassword": "{{ .Values.keycloak.adminPassword }}",
+        "timeout": 5
+      },
+      "Smtp": {
+        "username": "{{ .Values.api.configuration.Smtp.username }}",
+        "password": "{{ .Values.api.configuration.Smtp.password }}",
+        "host": "{{ .Values.api.configuration.Smtp.host }}",
+        "port": {{ .Values.api.configuration.Smtp.port }},
+        "adminEmail": "{{ .Values.api.configuration.Smtp.adminEmail }}"
+      },
+      "Webhooks": {
+        "events": {{ .Values.api.configuration.Webhooks.events | toJson }}
+      },
+      "PrivacyDashboardDeployment": {
+        "Hostname": "{{ .Values.api.configuration.PrivacyDashboardDeployment.Hostname }}",
+        "Version": "{{ .Values.api.configuration.PrivacyDashboardDeployment.Version }}"
+      },
+      "Policy": {
+        "Name": "{{ .Values.api.configuration.Policy.Name }}",
+        "Url": "{{ .Values.api.configuration.Policy.Url }}",
+        "IndustrySector": "{{ .Values.api.configuration.Policy.IndustrySector }}",
+        "GeographicRestriction": "{{ .Values.api.configuration.Policy.GeographicRestriction }}",
+        "StorageLocation": "{{ .Values.api.configuration.Policy.StorageLocation }}"
+      }
+    }
+kind: ConfigMap
+metadata:
+  name: {{ .Values.namespace }}-api-config
+  namespace: {{ .Values.namespace }}
