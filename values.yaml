@@ -60,7 +60,7 @@ mongo:
 # API
 api:
   # Container image
-  image: bb-consent-api:2023.11.12
+  image: igrantio/bb-consent-api:2023.11.12
   # Ingress
   ingress:
     # Annotations for the ingress
