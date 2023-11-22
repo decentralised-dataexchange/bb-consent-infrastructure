@@ -31,7 +31,7 @@ Kubernetes: `>=1.20.0-0`
 ## Get Repo Info
 
 ```bash
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add consentbb https://decentralised-dataexchange.github.io/bb-consent-infrastructure/stable/
 helm repo update
 ```
 
