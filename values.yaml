@@ -1,5 +1,6 @@
 # Namespace for kubernetes cluster
 namespace: consentbb
+prefix:
 # Resource constraints for a pod
 resources: {}
 # Security context for a pod
@@ -31,6 +32,7 @@ keycloak:
   dbPassword: bn_keycloak
   # Ingress
   ingress:
+    enabled: false
     # Annotations for the ingress
     annotations:
       # Default annotations if ingress is nginx ingress
@@ -67,9 +69,10 @@ mongo:
 api:
   enabled: true
   # Container image
-  image: igrantio/bb-consent-api:2023.11.12
+  image: igrantio/bb-consent-api:2023.11.17
   # Ingress
   ingress:
+    enabled: false
     # Annotations for the ingress
     annotations:
       # Default annotations if ingress is nginx ingress
@@ -96,6 +99,7 @@ api:
         secretName: tls-secret
   # Configuration
   configuration:
+    TestMode: false
     # Organisation
     Organization:
       # Organisation name
@@ -114,9 +118,6 @@ api:
       password:
     # API key secret to generate and verify API keys
     ApiSecretKey:
-    # Organisation type/industry sector name
-    Type:
-      name:
     # Keycloak
     Iam:
       # Keycloak URL accessible from the internet
@@ -166,9 +167,10 @@ api:
 adminDashboard:
   enabled: true
   # Container image
-  image: igrantio/bb-consent-admin-dashboard:2023.11.5
+  image: igrantio/bb-consent-admin-dashboard:2023.11.6
   # Ingress
   ingress:
+    enabled: false
     # Annotations for the ingress
     annotations:
       # Default annotations if ingress is nginx ingress
@@ -206,9 +208,10 @@ adminDashboard:
 privacyDashboard:
   enabled: true
   # Container image
-  image: igrantio/bb-consent-privacy-dashboard:2023.11.5
+  image: igrantio/bb-consent-privacy-dashboard:2023.11.6
   # Ingress
   ingress:
+    enabled: false
     # Annotations for the ingress
     annotations:
       # Default annotations if ingress is nginx ingress

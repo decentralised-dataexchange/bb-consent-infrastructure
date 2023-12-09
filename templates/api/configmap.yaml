@@ -12,6 +12,7 @@ data:
         "password": "{{ .Values.mongo.password }}"
       },
       "ApplicationMode": "single-tenant",
+      "TestMode": {{ .Values.api.configuration.TestMode }},
       "Organization": {
         "name": "{{ .Values.api.configuration.Organization.name }}",
         "location": "{{ .Values.api.configuration.Organization.location }}",
@@ -23,9 +24,6 @@ data:
         "password": "{{ .Values.api.configuration.User.password }}"
       },
       "ApiSecretKey": "{{ .Values.api.configuration.ApiSecretKey }}",
-      "Type": {
-        "name": "{{ .Values.api.configuration.Type.name }}"
-      },
       "Iam": {
         "url": "{{ .Values.api.configuration.Iam.url }}",
         "realm": "{{ .Values.api.configuration.Iam.realm }}",

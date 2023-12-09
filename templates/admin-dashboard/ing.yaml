@@ -1,4 +1,4 @@
-{{- if .Values.adminDashboard.enabled }}
+{{- if .Values.adminDashboard.ingress.enabled }}
 {{- $namespace := .Values.namespace -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress

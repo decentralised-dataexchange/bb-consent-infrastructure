@@ -5,3 +5,4 @@ tls-secret-govstack-keycloak.yaml
 service_account.json
 backup-chart/
 output.yaml
+test-*.yaml

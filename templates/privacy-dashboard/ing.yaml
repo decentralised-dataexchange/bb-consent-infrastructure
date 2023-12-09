@@ -1,4 +1,4 @@
-{{- if .Values.privacyDashboard.enabled }}
+{{- if .Values.privacyDashboard.ingress.enabled }}
 {{- $namespace := .Values.namespace -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
