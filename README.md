@@ -68,6 +68,8 @@ helm show values consentbb/consentbb
 ```yaml
 # Namespace for kubernetes cluster
 namespace: consentbb
+# Prefix for kubernetes object names
+prefix:
 # Resource constraints for a pod
 resources: {}
 # Security context for a pod
@@ -148,7 +150,7 @@ mongo:
 api:
   enabled: true
   # Container image
-  image: igrantio/bb-consent-api:2023.11.12
+  image: igrantio/bb-consent-api:2023.11.17
   # Ingress
   ingress:
     # Annotations for the ingress
@@ -177,6 +179,11 @@ api:
         secretName: tls-secret
   # Configuration
   configuration:
+    # Database
+    database:
+      # Host name
+      host:
+    TestMode: false
     # Organisation
     Organization:
       # Organisation name
@@ -250,7 +257,7 @@ api:
 adminDashboard:
   enabled: true
   # Container image
-  image: igrantio/bb-consent-admin-dashboard:2023.11.5
+  image: igrantio/bb-consent-admin-dashboard:2023.11.6
   # Ingress
   ingress:
     # Annotations for the ingress
@@ -293,7 +300,7 @@ adminDashboard:
 privacyDashboard:
   enabled: true
   # Container image
-  image: igrantio/bb-consent-privacy-dashboard:2023.11.5
+  image: igrantio/bb-consent-privacy-dashboard:2023.11.6
   # Ingress
   ingress:
     # Annotations for the ingress

@@ -1,5 +1,6 @@
 # Namespace for kubernetes cluster
 namespace: consentbb
+# Prefix for kubernetes object names
 prefix:
 # Resource constraints for a pod
 resources: {}
@@ -99,7 +100,9 @@ api:
         secretName: tls-secret
   # Configuration
   configuration:
+    # Database
     database:
+      # Host name
       host:
     TestMode: false
     # Organisation
