@@ -6,3 +6,4 @@ service_account.json
 backup-chart/
 output.yaml
 test-*.yaml
+INSTRUCTIONS.md

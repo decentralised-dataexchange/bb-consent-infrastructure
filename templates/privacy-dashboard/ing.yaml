@@ -7,7 +7,7 @@ metadata:
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  name: {{ $namespace }}-privacy-dashboard-ing
+  name: {{ $namespace }}-{{ .Values.prefix }}-privacy-dashboard-ing
   namespace: {{ $namespace }}
 spec:
   rules:
@@ -20,7 +20,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $namespace }}-privacy-dashboard-svc
+                name: {{ $namespace }}-{{ .Values.prefix }}-privacy-dashboard-svc
                 port:
                   number: 80
           {{- end }}

@@ -5,7 +5,11 @@ data:
     {
       "DataBase": {
         "hosts": [
-          "{{ .Values.namespace }}-mongo-svc"
+          {{- if .Values.api.configuration.database.host }}
+          "{{ .Values.api.configuration.database.host }}"
+          {{- else }}
+          "{{ .Values.namespace }}-{{ .Values.prefix }}-mongo-svc"
+          {{- end }}
         ],
         "name": "{{ .Values.mongo.database }}",
         "username": "{{ .Values.mongo.username }}",
@@ -56,6 +60,6 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: {{ .Values.namespace }}-api-config
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-api-config
   namespace: {{ .Values.namespace }}
 {{- end }}

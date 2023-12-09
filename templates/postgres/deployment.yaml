@@ -3,21 +3,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ .Values.namespace }}-postgres
-  name: {{ .Values.namespace }}-postgres-deployment
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-deployment
   namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.namespace }}-postgres
+      app: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ .Values.namespace }}-postgres
+        app: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres
     spec:
       containers:
-        - name: {{ .Values.namespace }}-postgres
+        - name: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres
           image: {{ .Values.postgres.image }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -39,5 +39,5 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: {{ .Values.namespace }}-postgres-pvc
+            claimName: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-pvc
 {{- end }}

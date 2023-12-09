@@ -9,6 +9,6 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: {{ .Values.namespace }}-privacy-dashboard-config
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-privacy-dashboard-config
   namespace: {{ .Values.namespace }}
 {{- end }}

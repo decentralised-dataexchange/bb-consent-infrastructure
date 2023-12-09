@@ -99,6 +99,8 @@ api:
         secretName: tls-secret
   # Configuration
   configuration:
+    database:
+      host:
     TestMode: false
     # Organisation
     Organization:

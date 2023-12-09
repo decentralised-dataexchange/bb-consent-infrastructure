@@ -3,23 +3,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ .Values.namespace }}-privacy-dashboard
-  name: {{ .Values.namespace }}-privacy-dashboard
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-privacy-dashboard
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-privacy-dashboard
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.namespace }}-privacy-dashboard
+      app: {{ .Values.namespace }}-{{ .Values.prefix }}-privacy-dashboard
   template:
     metadata:
       labels:
-        app: {{ .Values.namespace }}-privacy-dashboard
+        app: {{ .Values.namespace }}-{{ .Values.prefix }}-privacy-dashboard
     spec:
       containers:
         - image: {{ .Values.privacyDashboard.image }}
           imagePullPolicy: Always
-          name: {{ .Values.namespace }}-privacy-dashboard
+          name: {{ .Values.namespace }}-{{ .Values.prefix }}-privacy-dashboard
           ports:
             - containerPort: 80
               protocol: TCP
@@ -33,6 +33,6 @@ spec:
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Values.namespace }}-privacy-dashboard-config
+            name: {{ .Values.namespace }}-{{ .Values.prefix }}-privacy-dashboard-config
           name: config-volume
 {{- end }}

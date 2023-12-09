@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.namespace }}-mongo-pvc
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-mongo-pvc
   namespace: {{ .Values.namespace }}
 spec:
   accessModes:

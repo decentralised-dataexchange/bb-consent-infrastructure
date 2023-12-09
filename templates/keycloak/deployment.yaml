@@ -3,21 +3,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ .Values.namespace }}-keycloak
-  name: {{ .Values.namespace }}-keycloak-deployment
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak-deployment
   namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.namespace }}-keycloak
+      app: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ .Values.namespace }}-keycloak
+        app: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak
     spec:
       containers:
-        - name: {{ .Values.namespace }}-keycloak
+        - name: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak
           image: {{ .Values.keycloak.image }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -31,7 +31,7 @@ spec:
             - name: KEYCLOAK_ADMIN_PASSWORD
               value: {{ .Values.keycloak.adminPassword }}
             - name: KEYCLOAK_DATABASE_HOST
-              value: {{ .Values.namespace }}-postgres-service
+              value: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-service
             - name: KEYCLOAK_DATABASE_PASSWORD
               value: {{ .Values.keycloak.dbPassword }}
             - name: KEYCLOAK_HTTP_RELATIVE_PATH

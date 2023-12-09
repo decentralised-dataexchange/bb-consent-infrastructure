@@ -3,23 +3,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ .Values.namespace }}-admin-dashboard
-  name: {{ .Values.namespace }}-admin-dashboard
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.namespace }}-admin-dashboard
+      app: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard
   template:
     metadata:
       labels:
-        app: {{ .Values.namespace }}-admin-dashboard
+        app: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard
     spec:
       containers:
         - image: {{ .Values.adminDashboard.image }}
           imagePullPolicy: Always
-          name: {{ .Values.namespace }}-admin-dashboard
+          name: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard
           ports:
             - containerPort: 80
               protocol: TCP
@@ -33,6 +33,6 @@ spec:
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Values.namespace }}-admin-dashboard-config
+            name: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard-config
           name: config-volume
 {{- end }}

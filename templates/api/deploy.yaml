@@ -3,23 +3,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ .Values.namespace }}-api
-  name: {{ .Values.namespace }}-api
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-api
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-api
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.namespace }}-api
+      app: {{ .Values.namespace }}-{{ .Values.prefix }}-api
   template:
     metadata:
       labels:
-        app: {{ .Values.namespace }}-api
+        app: {{ .Values.namespace }}-{{ .Values.prefix }}-api
     spec:
       containers:
         - image: {{ .Values.api.image }}
           imagePullPolicy: Always
-          name: {{ .Values.namespace }}-api
+          name: {{ .Values.namespace }}-{{ .Values.prefix }}-api
           ports:
             - containerPort: 80
               protocol: TCP
@@ -33,6 +33,6 @@ spec:
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Values.namespace }}-api-config
+            name: {{ .Values.namespace }}-{{ .Values.prefix }}-api-config
           name: config-volume
 {{- end }}

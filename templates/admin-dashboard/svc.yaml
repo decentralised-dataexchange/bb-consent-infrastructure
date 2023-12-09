@@ -3,8 +3,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: {{ .Values.namespace }}-admin-dashboard
-  name: {{ .Values.namespace }}-admin-dashboard-svc
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard-svc
   namespace: {{ .Values.namespace }}
 spec:
   ports:
@@ -12,5 +12,5 @@ spec:
       port: 80
       targetPort: 80
   selector:
-    app: {{ .Values.namespace }}-admin-dashboard
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard
 {{- end }}

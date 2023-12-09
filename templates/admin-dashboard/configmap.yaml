@@ -9,6 +9,6 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: {{ .Values.namespace }}-admin-dashboard-config
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-admin-dashboard-config
   namespace: {{ .Values.namespace }}
 {{- end }}

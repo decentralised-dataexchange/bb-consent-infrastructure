@@ -3,13 +3,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: {{ .Values.namespace }}-postgres
-  name: {{ .Values.namespace }}-postgres-service
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-service
   namespace: {{ .Values.namespace }}
 spec:
   ports:
     - port: 5432
       targetPort: 5432
   selector:
-    app: {{ .Values.namespace }}-postgres
+    app: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres
 {{- end }}

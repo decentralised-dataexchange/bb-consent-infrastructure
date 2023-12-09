@@ -3,7 +3,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $namespace }}-keycloak-ingress
+  name: {{ $namespace }}-{{ .Values.prefix }}-keycloak-ingress
   namespace: {{ $namespace }}
   {{- with .Values.keycloak.ingress.annotations }}
   annotations:
@@ -20,7 +20,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $namespace }}-keycloak-service
+                name: {{ $namespace }}-{{ .Values.prefix }}-keycloak-service
                 port:
                   number: 8080
           {{- end }}
