@@ -7,3 +7,5 @@ backup-chart/
 output.yaml
 test-*.yaml
 INSTRUCTIONS.md
+tls.crt
+tls.key
