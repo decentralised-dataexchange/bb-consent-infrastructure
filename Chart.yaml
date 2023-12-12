@@ -2,5 +2,5 @@ apiVersion: v2
 name: consentbb
 description: GovStack Consent Building Block by iGrant.io
 type: application
-version: 2023.11.3
+version: 2023.12.1
 icon: https://igrant.io/assets/images/favicons/android-icon-192x192.png
