@@ -1,0 +1,26 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+apiVersion: v2
+description: GovStack Consent Building Block by iGrant.io
+icon: https://igrant.io/assets/images/favicons/android-icon-192x192.png
+name: consentbb
+type: application
+version: 2023.12.3
+
+...
+files:
+  consentbb-2023.12.3.tgz: sha256:4f11841a0637e26f69ef34873ff220d98b9d19da8f4c1908f94301cbfad72d5d
+-----BEGIN PGP SIGNATURE-----
+
+wsDcBAEBCgAQBQJleLjcCRB5kxolTMXTQgAAoFkMADwIsqFN9qqfj0FrPmeCFzmF
+WYs4FcP85kh6tGWZP/oFTFHVtM/cgMVSTwaOsHysOQtTbmu14S2G26Sw/CJ3Un5l
+u+9x6K5uhQWhxP+hSHZOXbGEbHonflDdgUg8tPOnjtecyAZyf5poYfHWMnQtAlGN
+Nd8RNiWZgD2NeVS/NEX7t0SIg1bs/EBCWrnR3q7TbkWOGrSl2yjvSPVDP4KdBh04
+RyoS1IfKxC2Hq0J8lBVt/tDwQUjQrD/KJY4pCq+CCiiDEtqs6el4K+JBdlQky1Ge
+bMvxT8olZgpwVBaMwT5iudCoGzv4YYFXTMK922ZLAQoRk3E4GBP0+Drh9IhZ/3BS
+uGHFVGW5/ozPY/WL4lLXzT1n3RsU00bvz+5HaCfwWlgZq5LpAvI/YGhRq++wgIKr
+pfvfczGAlXyhw2wZS8ldelZGXhXTbY4rjBNprO5SKHUZx7uM7u+3oRHOYw7jJ6Hk
+rbYy0AM0ggiur9PKK1HEmxUSlBUXj10OpWoDXa6UTw==
+=qhHY
+-----END PGP SIGNATURE-----

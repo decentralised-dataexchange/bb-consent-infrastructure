@@ -28,3 +28,6 @@ tls-secret-govstack.yaml
 tls-secret.yaml
 tls-secret-govstack-keycloak.yaml
 service_account.json
+stable/
+tls.crt
+tls.key

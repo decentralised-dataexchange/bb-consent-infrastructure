@@ -7,6 +7,8 @@ resources: {}
 # Security context for a pod
 securityContext:
   runAsUser: 0
+# Storage class name
+storageClassName: standard
 
 # Postgres
 postgres:
