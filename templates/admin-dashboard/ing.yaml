@@ -1,5 +1,6 @@
 {{- if .Values.adminDashboard.ingress.enabled }}
 {{- $namespace := .Values.namespace -}}
+{{- $prefix := .Values.prefix -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -7,7 +8,7 @@ metadata:
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  name: {{ $namespace }}-{{ .Values.prefix }}-admin-dashboard-ing
+  name: {{ $namespace }}-{{ $prefix }}-admin-dashboard-ing
   namespace: {{ $namespace }}
 spec:
   rules:
@@ -20,7 +21,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $namespace }}-{{ .Values.prefix }}-admin-dashboard-svc
+                name: {{ $namespace }}-{{ $prefix }}-admin-dashboard-svc
                 port:
                   number: 80
           {{- end }}

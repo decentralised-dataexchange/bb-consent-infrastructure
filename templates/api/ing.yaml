@@ -1,5 +1,6 @@
 {{- if .Values.api.ingress.enabled }}
 {{- $namespace := .Values.namespace -}}
+{{- $prefix := .Values.prefix -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -7,7 +8,7 @@ metadata:
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  name: {{ $namespace }}-{{ .Values.prefix }}-api-ing
+  name: {{ $namespace }}-{{ $prefix }}-api-ing
   namespace: {{ $namespace }}
 spec:
   rules:
@@ -20,7 +21,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $namespace }}-{{ .Values.prefix }}-api-svc
+                name: {{ $namespace }}-{{ $prefix }}-api-svc
                 port:
                   number: 80
           {{- end }}
