@@ -1,0 +1,171 @@
+namespace: consentbb
+prefix: sandbox
+resources: {}
+securityContext:
+  runAsUser: 0
+storageClassName: gp2
+
+postgres:
+  enabled: true
+  image: bitnami/postgresql:14.10.0
+  username: bn_keycloak
+  # Update `password`
+  password:
+  database: bitnami_keycloak
+
+keycloak:
+  enabled: true
+  image: docker.io/bitnami/keycloak:22.0.2-debian-11-r0
+  adminUsername: keycloak
+  # Update `password`
+  adminPassword:
+  # Update `password`
+  dbPassword:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.allow-http: "false"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
+      nginx.ingress.kubernetes.io/cors-allow-origin: '*'
+    # Update `hosts` and `tls`
+    hosts:
+      - host: iam.consentbb.sandbox.clearprivacy.in
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - iam.consentbb.sandbox.clearprivacy.in
+        secretName: tls-secret
+
+mongo:
+  enabled: true
+  image: bitnami/mongodb:7.0
+  username: bb-consent-user
+  # Update `password`
+  password:
+  database: bb-consent-consentdb
+
+api:
+  enabled: true
+  image: igrantio/bb-consent-api:2023.11.17
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.allow-http: "false"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
+      nginx.ingress.kubernetes.io/cors-allow-credentials: true
+      nginx.ingress.kubernetes.io/cors-allow-headers: Content-Type, Authorization, x-consentbb-individualid
+      nginx.ingress.kubernetes.io/cors-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+      nginx.ingress.kubernetes.io/cors-allow-origin: '*'
+    # Update `hosts` and `tls`
+    hosts:
+      - host: api.consentbb.sandbox.clearprivacy.in
+        paths:
+          - path: /
+            pathType: Prefix
+          - path: /*
+            pathType: Prefix
+    tls:
+      - hosts:
+          - api.consentbb.sandbox.clearprivacy.in
+        secretName: tls-secret
+  configuration:
+    TestMode: false
+    Organization:
+      name: GovStack
+      location: Sweden
+      description: GovStack is committed to safeguarding your privacy. We process your personal data in line with data agreements, ensuring adherence to ISO27560 standards and legal frameworks like GDPR. For every personal data we process, you can view its usage purpose and make informed choices to opt in or out. For inquiries, contact our Data Protection Officer at dpo@govstack.global
+      eulaUrl: https://www.govstack.global/coc/
+    User:
+      username: admin@govstack.global
+      # Update `password`
+      password:
+    ApiSecretKey: samplekey
+    Iam:
+      url: https://iam.consentbb.sandbox.clearprivacy.in
+      realm: BB-Consent-Users
+      ClientId: igrant-ios-app
+    Smtp:
+      username: consentbb@gmail.com
+      # Update `password`
+      password:
+      host: smtp.gmail.com
+      port: 587
+      adminEmail: consentbb@gmail.com
+    Webhooks:
+      events:
+        - consent.allowed
+        - consent.disallowed
+    PrivacyDashboardDeployment:
+      Hostname: https://privacy.consentbb.sandbox.clearprivacy.in/
+      Version: 2023.11.6
+    Policy:
+      Name: Policy 1
+      Url: https://www.govstack.global/privacy/
+      IndustrySector: Public
+      GeographicRestriction: Sweden
+      StorageLocation: Sweden
+
+adminDashboard:
+  enabled: true
+  image: igrantio/bb-consent-admin-dashboard:2023.11.6
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.allow-http: "false"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
+      nginx.ingress.kubernetes.io/cors-allow-origin: '*'
+    # Update `hosts` and `tls`
+    hosts:
+      - host: admin.consentbb.sandbox.clearprivacy.in
+        paths:
+          - path: /
+            pathType: Prefix
+          - path: /*
+            pathType: Prefix
+    tls:
+      - hosts:
+          - admin.consentbb.sandbox.clearprivacy.in
+        secretName: tls-secret
+  configuration:
+    # Update `baseUrl` 
+    baseUrl: https://api.consentbb.sandbox.clearprivacy.in/v2
+    appVersion: 2023.11.6
+    clientId: igrant-ios-app
+
+privacyDashboard:
+  enabled: true
+  image: igrantio/bb-consent-privacy-dashboard:2023.11.6
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.allow-http: "false"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
+      nginx.ingress.kubernetes.io/cors-allow-origin: '*'
+    # Update `hosts` and `tls`
+    hosts:
+      - host: privacy.consentbb.sandbox.clearprivacy.in
+        paths:
+          - path: /
+            pathType: Prefix
+          - path: /*
+            pathType: Prefix
+    tls:
+      - hosts:
+          - privacy.consentbb.sandbox.clearprivacy.in
+        secretName: tls-secret
+  configuration:
+    # Update `baseUrl` 
+    baseUrl: https://api.consentbb.sandbox.clearprivacy.in/v2
+    # Update `redirectUrl`
+    redirectUrl: https://privacy.consentbb.sandbox.clearprivacy.in/login
+    clientId: igrant-ios-app
