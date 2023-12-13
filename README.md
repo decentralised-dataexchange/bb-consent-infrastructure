@@ -62,6 +62,10 @@ To see all configurable options with detailed comments, visit the chart's values
 ```bash
 helm show values consentbb/consentbb
 ```
+Example values file is provided [here](https://github.com/decentralised-dataexchange/bb-consent-infrastructure/blob/main/example-values.yaml). You can install this file by running below command:
+```bash
+helm install [RELEASE_NAME] consentbb/consentbb --values example-values.yaml
+```
 
 #### Global configuration
 
