@@ -40,7 +40,7 @@ helm repo update
 **Important:** only helm3 is supported
 
 ```bash
-helm install [RELEASE_NAME] consentbb/consentbb --version 2023.12.3
+helm install [RELEASE_NAME] consentbb/consentbb --version 2023.12.4
 ```
 
 The command deploys Consent BB on the Kubernetes cluster in the default configuration.
@@ -64,7 +64,7 @@ helm show values consentbb/consentbb
 ```
 Example values file is provided [here](https://github.com/decentralised-dataexchange/bb-consent-infrastructure/blob/main/example-values.yaml). You can install this file by running below command:
 ```bash
-helm install [RELEASE_NAME] consentbb/consentbb --version 2023.12.3 --values example-values.yaml
+helm install [RELEASE_NAME] consentbb/consentbb --version 2023.12.4 --values example-values.yaml
 ```
 
 #### Global configuration
@@ -112,6 +112,10 @@ keycloak:
   adminPassword: admin
   # Database user password
   dbPassword: bn_keycloak
+  # Database username
+  dbUsername: bn_keycloak
+  # Database name
+  dbName: bitnami_keycloak
   # Ingress
   ingress:
     # Annotations for the ingress

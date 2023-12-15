@@ -21,7 +21,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $namespace }}-{{ $prefix }}-keycloak-service
+                name: {{ $namespace }}-{{ $prefix }}-keycloak-svc
                 port:
                   number: 8080
           {{- end }}

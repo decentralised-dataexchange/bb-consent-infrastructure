@@ -33,6 +33,10 @@ keycloak:
   adminPassword: admin
   # Database user password
   dbPassword: bn_keycloak
+  # Database username
+  dbUsername: bn_keycloak
+  # Database name
+  dbName: bitnami_keycloak
   # Ingress
   ingress:
     enabled: false

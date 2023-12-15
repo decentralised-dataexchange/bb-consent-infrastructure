@@ -31,9 +31,13 @@ spec:
             - name: KEYCLOAK_ADMIN_PASSWORD
               value: {{ .Values.keycloak.adminPassword }}
             - name: KEYCLOAK_DATABASE_HOST
-              value: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-service
+              value: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-svc
             - name: KEYCLOAK_DATABASE_PASSWORD
               value: {{ .Values.keycloak.dbPassword }}
+            - name: KEYCLOAK_DATABASE_USER
+              value: {{ .Values.keycloak.dbUsername }}
+            - name: KEYCLOAK_DATABASE_NAME
+              value: {{ .Values.keycloak.dbName }}
             - name: KEYCLOAK_HTTP_RELATIVE_PATH
               value: /
             - name: KEYCLOAK_ENABLE_HTTPS

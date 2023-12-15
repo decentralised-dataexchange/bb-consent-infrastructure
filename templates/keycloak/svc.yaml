@@ -4,7 +4,7 @@ kind: Service
 metadata:
   labels:
     app: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak
-  name: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak-service
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-keycloak-svc
   namespace: {{ .Values.namespace }}
 spec:
   ports:

@@ -4,7 +4,7 @@ kind: Service
 metadata:
   labels:
     app: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres
-  name: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-service
+  name: {{ .Values.namespace }}-{{ .Values.prefix }}-postgres-svc
   namespace: {{ .Values.namespace }}
 spec:
   ports:

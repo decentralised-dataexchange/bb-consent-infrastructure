@@ -21,6 +21,8 @@ keycloak:
   adminPassword:
   # Update `password`
   dbPassword:
+  dbUsername: bn_keycloak
+  dbName: bitnami_keycloak
   ingress:
     enabled: true
     annotations:
