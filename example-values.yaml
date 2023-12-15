@@ -50,7 +50,7 @@ mongo:
 
 api:
   enabled: true
-  image: igrantio/bb-consent-api:2023.11.17
+  image: igrantio/bb-consent-api:2023.12.2
   ingress:
     enabled: true
     annotations:

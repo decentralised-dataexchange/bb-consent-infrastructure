@@ -156,7 +156,7 @@ mongo:
 api:
   enabled: true
   # Container image
-  image: igrantio/bb-consent-api:2023.11.17
+  image: igrantio/bb-consent-api:2023.12.2
   # Ingress
   ingress:
     # Annotations for the ingress
